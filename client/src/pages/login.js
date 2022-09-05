@@ -3,11 +3,16 @@ import { onLogin } from '../api/auth'
 import Layout from '../components/layout'
 import { useDispatch } from 'react-redux'
 import { authenticateUser } from '../redux/slices/authSlice'
+import { useSelector } from 'react-redux'
+import Home from './home'
+import { Navigate } from 'react-router-dom'
 
 const Login = () => {
+
   const [values, setValues] = useState({
     email: '',
     password: '',
+    role: '',
   })
   const [error, setError] = useState(false)
 
@@ -22,8 +27,8 @@ const Login = () => {
     try {
       await onLogin(values)
       dispatch(authenticateUser())
-
       localStorage.setItem('isAuth', 'true')
+      localStorage.setItem('role', values.role)
     } catch (error) {
       console.log(error.response.data.errors[0].msg)
       setError(error.response.data.errors[0].msg)
@@ -65,13 +70,28 @@ const Login = () => {
             placeholder='passwod'
             required
           />
+
+          <label htmlFor='role' className='form-label mt-3'>Je suis:</label>
+            <select 
+                    onChange={(e) => onChange(e)}
+                    value={values.role}
+                    name="role"
+                    id="role" 
+                    className='form-select'
+                    required
+            >
+                <option value="">--Choisissez--</option>
+                <option value="recruteur">Recruteur</option>
+                <option value="candidat">Candidat</option>
+            </select>
         </div>
 
+        
         <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
 
         <button type='submit' className='btn btn-primary'>
           Submit
-        </button>
+        </button>  
       </form>
     </Layout>
   )

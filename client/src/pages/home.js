@@ -1,11 +1,15 @@
-import Layout from '../components/layout'
-
+import Candidat from './candidat'
+import Recruteur from './recruteur'
 const Home = () => {
-  return (
-    <Layout>
-      <h1>Home</h1>
-    </Layout>
-  )
+
+  const role = localStorage.getItem('role')
+
+  if (role === 'candidat') {
+    return <><Candidat /></>
+  } else if(role === 'recruteur') {
+    return <><Recruteur /></>
+  } 
+  
 }
 
 export default Home

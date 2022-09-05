@@ -6,6 +6,7 @@ const Register = () => {
   const [values, setValues] = useState({
     email: '',
     password: '',
+    role: '',
   })
   const [error, setError] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -22,7 +23,7 @@ const Register = () => {
 
       setError('')
       setSuccess(data.message)
-      setValues({ email: '', password: '' })
+      setValues({ email: '', password: '', role: '' })
     } catch (error) {
       setError(error.response.data.errors[0].msg)
       setSuccess('')
@@ -61,9 +62,24 @@ const Register = () => {
             className='form-control'
             id='password'
             name='password'
-            placeholder='passwod'
+            placeholder='password'
             required
           />
+
+         
+            <label htmlFor='role' className='form-label mt-3'>Vous êtes:</label>
+            <select 
+                    onChange={(e) => onChange(e)}
+                    value={values.role}
+                    name="role"
+                    id="role" 
+                    className='form-select'
+                    required
+            >
+                <option value="">--Choisissez--</option>
+                <option value="recruteur">Recruteur</option>
+                <option value="candidat">Candidat</option>
+            </select>
         </div>
 
         <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>

@@ -8,9 +8,11 @@ export async function onRegistration(registrationData) {
   )
 }
 
+
 export async function onLogin(loginData) {
   return await axios.post('http://localhost:8000/api/login', loginData)
 }
+
 
 export async function onLogout() {
   return await axios.get('http://localhost:8000/api/logout')
@@ -18,4 +20,8 @@ export async function onLogout() {
 
 export async function fetchProtectedInfo() {
   return await axios.get('http://localhost:8000/api/protected')
+}
+
+export async function userData() {
+  return await axios.get('http://localhost:8000/api/user')
 }
