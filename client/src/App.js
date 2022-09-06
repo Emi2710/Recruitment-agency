@@ -10,7 +10,6 @@ import Home from './pages/home'
 import Login from './pages/login'
 import Register from './pages/register'
 
-
 import { useSelector } from 'react-redux'
 
 const PrivateRoutes = () => {

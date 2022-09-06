@@ -33,11 +33,11 @@ const Register = () => {
   return (
     <Layout>
       <form onSubmit={(e) => onSubmit(e)} className='container mt-3'>
-        <h1>Register</h1>
+        <h1>Inscription</h1>
 
         <div className='mb-3'>
           <label htmlFor='email' className='form-label'>
-            Email address
+            Adresse mail
           </label>
           <input
             onChange={(e) => onChange(e)}
@@ -46,14 +46,14 @@ const Register = () => {
             id='email'
             name='email'
             value={values.email}
-            placeholder='test@gmail.com'
+            placeholder='exemple@gmail.com'
             required
           />
         </div>
 
         <div className='mb-3'>
           <label htmlFor='password' className='form-label'>
-            Password
+            Mot de passe
           </label>
           <input
             onChange={(e) => onChange(e)}
@@ -62,7 +62,7 @@ const Register = () => {
             className='form-control'
             id='password'
             name='password'
-            placeholder='password'
+            placeholder='Mot de passe'
             required
           />
 
@@ -86,7 +86,7 @@ const Register = () => {
         <div style={{ color: 'green', margin: '10px 0' }}>{success}</div>
 
         <button type='submit' className='btn btn-primary'>
-          Submit
+          Soumettre
         </button>
       </form>
     </Layout>

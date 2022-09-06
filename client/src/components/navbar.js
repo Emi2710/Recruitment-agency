@@ -25,27 +25,27 @@ const Navbar = () => {
       <div className='container'>
         <div>
           <NavLink to='/'>
-            <span className='navbar-brand mb-0 h1'>Home</span>
+            <span className='navbar-brand mb-0 h1'>Accueil</span>
           </NavLink>
         </div>
 
         {isAuth ? (
           <div>
-            <NavLink to='/login'>
+            
               <button onClick={() => logout()} className='btn btn-primary'>
-              Logout
+              Se déconnecter
               </button>  
-            </NavLink>
+            
             
           </div>
         ) : (
           <div>
             <NavLink to='/login'>
-              <span>Login</span>
+              <span>Connexion</span>
             </NavLink>
 
             <NavLink to='/register' className='mx-3'>
-              <span>Register</span>
+              <span>Inscription</span>
             </NavLink>
           </div>
         )}

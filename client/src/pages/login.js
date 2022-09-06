@@ -3,9 +3,7 @@ import { onLogin } from '../api/auth'
 import Layout from '../components/layout'
 import { useDispatch } from 'react-redux'
 import { authenticateUser } from '../redux/slices/authSlice'
-import { useSelector } from 'react-redux'
-import Home from './home'
-import { Navigate } from 'react-router-dom'
+
 
 const Login = () => {
 
@@ -14,8 +12,9 @@ const Login = () => {
     password: '',
     role: '',
   })
-  const [error, setError] = useState(false)
 
+  const [error, setError] = useState(false)
+  
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
@@ -38,11 +37,11 @@ const Login = () => {
   return (
     <Layout>
       <form onSubmit={(e) => onSubmit(e)} className='container mt-3'>
-        <h1>Login</h1>
+        <h1>Connexion</h1>
 
         <div className='mb-3'>
           <label htmlFor='email' className='form-label'>
-            Email address
+            Adresse mail
           </label>
           <input
             onChange={(e) => onChange(e)}
@@ -51,14 +50,14 @@ const Login = () => {
             id='email'
             name='email'
             value={values.email}
-            placeholder='test@gmail.com'
+            placeholder='exemple@gmail.com'
             required
           />
         </div>
 
         <div className='mb-3'>
           <label htmlFor='password' className='form-label'>
-            Password
+            Mot de passe
           </label>
           <input
             onChange={(e) => onChange(e)}
@@ -67,7 +66,7 @@ const Login = () => {
             className='form-control'
             id='password'
             name='password'
-            placeholder='passwod'
+            placeholder='Mot de passe'
             required
           />
 
@@ -90,7 +89,7 @@ const Login = () => {
         <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
 
         <button type='submit' className='btn btn-primary'>
-          Submit
+          Soumettre
         </button>  
       </form>
     </Layout>

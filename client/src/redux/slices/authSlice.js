@@ -10,6 +10,7 @@ const userAuthFromLocalStorage = () => {
   return false
 }
 
+
 const initialState = {
   isAuth: userAuthFromLocalStorage(),
 }
