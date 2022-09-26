@@ -7,3 +7,5 @@ create table users(
     created_at date default current_date
 );
 
+
+

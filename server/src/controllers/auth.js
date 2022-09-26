@@ -95,3 +95,24 @@ exports.logout = async (req, res) => {
     })
   }
 }
+
+/*exports.recrInfo = async (req, res) => {
+  const { firm, adress } = req.body
+  try {
+
+    await db.query('insert into users(firm, adress) values ($1 , $2)', [
+      firm, 
+      adress,
+    ])
+
+    return res.status(201).json({
+      success: true,
+      message: 'Vos informations ont bien été enregistrées',
+    })
+  } catch (error) {
+    console.log(error.message)
+    return res.status(500).json({
+      error: error.message,
+    })
+  }
+}*/

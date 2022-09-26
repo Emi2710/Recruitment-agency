@@ -5,7 +5,7 @@ const {
   login,
   protected,
   logout,
-} = require('../controllers/auth')
+      } = require('../controllers/auth')
 const {
   validationMiddleware,
 } = require('../middlewares/validation-middleware')

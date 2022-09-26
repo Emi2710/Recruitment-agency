@@ -25,3 +25,7 @@ export async function fetchProtectedInfo() {
 export async function userData() {
   return await axios.get('http://localhost:8000/api/user')
 }
+
+export async function recrInfo() {
+  return await axios.get('http://localhost:8000/api/recrInfo')
+}
