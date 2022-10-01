@@ -1,6 +1,6 @@
 import React from 'react'
-import Candidat from './candidat'
-import Recruteur from './recruteur'
+import Candidat from './Candidat/candidat'
+import Recruteur from './Recruteur/recruteur'
 
 const Home = () => {
     const role = localStorage.getItem('role')

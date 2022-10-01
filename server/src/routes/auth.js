@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const db = require('../db')
 const {
   getUsers,
   register,
@@ -18,6 +19,7 @@ router.get('/protected', userAuth, protected)
 router.post('/register', registerValidation, validationMiddleware, register)
 router.post('/login', loginValidation, validationMiddleware, login)
 router.get('/logout', logout)
+
 
 
 module.exports = router

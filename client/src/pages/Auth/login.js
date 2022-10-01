@@ -1,39 +1,43 @@
 import { useState } from 'react'
-import { onRegistration } from '../api/auth'
-import Layout from '../components/layout'
+import { onLogin } from '../../api/auth'
+import Layout from '../../components/layout'
+import { useDispatch } from 'react-redux'
+import { authenticateUser } from '../../redux/slices/authSlice'
 
-const Register = () => {
+
+const Login = () => {
+
   const [values, setValues] = useState({
     email: '',
     password: '',
     role: '',
   })
-  const [error, setError] = useState(false)
-  const [success, setSuccess] = useState(false)
 
+  const [error, setError] = useState(false)
+  
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
 
+  const dispatch = useDispatch()
   const onSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      const { data } = await onRegistration(values)
-
-      setError('')
-      setSuccess(data.message)
-      setValues({ email: '', password: '', role: '' })
+      await onLogin(values)
+      dispatch(authenticateUser())
+      localStorage.setItem('isAuth', 'true')
+      localStorage.setItem('role', values.role)
     } catch (error) {
+      console.log(error.response.data.errors[0].msg)
       setError(error.response.data.errors[0].msg)
-      setSuccess('')
     }
   }
 
   return (
     <Layout>
       <form onSubmit={(e) => onSubmit(e)} className='container mt-3'>
-        <h1>Inscription</h1>
+        <h1>Connexion</h1>
 
         <div className='mb-3'>
           <label htmlFor='email' className='form-label'>
@@ -66,8 +70,7 @@ const Register = () => {
             required
           />
 
-         
-            <label htmlFor='role' className='form-label mt-3'>Vous êtes:</label>
+          <label htmlFor='role' className='form-label mt-3'>Je suis:</label>
             <select 
                     onChange={(e) => onChange(e)}
                     value={values.role}
@@ -82,15 +85,15 @@ const Register = () => {
             </select>
         </div>
 
+        
         <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
-        <div style={{ color: 'green', margin: '10px 0' }}>{success}</div>
 
         <button type='submit' className='btn btn-primary'>
           Soumettre
-        </button>
+        </button>  
       </form>
     </Layout>
   )
 }
 
-export default Register
+export default Login
