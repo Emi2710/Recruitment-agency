@@ -17,7 +17,7 @@ app.use(passport.initialize())
 
 //import routes
 const authRoutes = require('./routes/auth')
-const crudRoutes = require ('./routes/crudRecruteur')
+const crudRoutes = require ('./routes/crudUser')
 //initialize routes
 app.use('/api', authRoutes)
 app.use('/api', crudRoutes)

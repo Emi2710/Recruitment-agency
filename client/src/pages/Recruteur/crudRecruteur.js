@@ -6,7 +6,10 @@ export const CrudRecruteur = () => {
   const [jobTitle, setJobTitle] = useState("")
   const [jobPlace, setJobPlace] = useState("")
   const [jobDescription, setJobDescription] = useState("")
+  const [author, setAuthor] = useState("")
   
+  
+
   const [error, setError] = useState(false)
   const [success, setSuccess] = useState(false)
 
@@ -19,8 +22,8 @@ export const CrudRecruteur = () => {
     e.preventDefault()
 
     try {
-      const body = { jobTitle, jobPlace, jobDescription  };
-      const response = await fetch("http://localhost:8000/api/crudRecruteur", {
+      const body = { jobTitle, jobPlace, jobDescription, author  };
+      const response = await fetch("http://localhost:8000/api/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
@@ -37,65 +40,87 @@ export const CrudRecruteur = () => {
   }
   return (
     <div className='mt-5'>
-      <h2>Faire une annonce</h2>
-      <form onSubmit={onSubmitForm} className='container mt-3'>
+      <div>
+        <h2>Faire une annonce</h2>
+        <form onSubmit={onSubmitForm} className='container mt-3'>
 
-        <div className='mb-3'>
-          <label htmlFor='email' className='form-label'>
-            Intitulé du poste:
-          </label>
-          <input
-            onChange={e => setJobTitle(e.target.value)}
-            type='text'
-            className='form-control'
-            id='jobTitle'
-            name='jobTitle'
-            value={jobTitle}
-            placeholder='Intitulé du poste'
-            required
-          />
-        </div>
+          <div className='mb-3'>
+            <label htmlFor='email' className='form-label'>
+              Intitulé du poste:
+            </label>
+            <input
+              onChange={e => setJobTitle(e.target.value)}
+              type='text'
+              className='form-control'
+              id='jobTitle'
+              name='jobTitle'
+              value={jobTitle}
+              placeholder='Intitulé du poste'
+              required
+            />
+          </div>
 
-        <div className='mb-3'>
-          <label htmlFor='password' className='form-label'>
-            Lieu du travail:
-          </label>
-          <input
-            onChange={e => setJobPlace(e.target.value)}
-            type='text'
-            className='form-control'
-            id='jobPlace'
-            name='jobPlace'
-            value={jobPlace}
-            placeholder='Lieu du travail'
-            
-          />
-        </div>
+          <div className='mb-3'>
+            <label htmlFor='password' className='form-label'>
+              Lieu du travail:
+            </label>
+            <input
+              onChange={e => setJobPlace(e.target.value)}
+              type='text'
+              className='form-control'
+              id='jobPlace'
+              name='jobPlace'
+              value={jobPlace}
+              placeholder='Lieu du travail'
+              required
+              
+            />
+          </div>
 
-        <div className='mb-3'>
-          <label htmlFor='password' className='form-label'>
-            Description du poste:
-          </label>
-          <input
-            onChange={e => setJobDescription(e.target.value)}
-            type='text'
-            className='form-control'
-            id='jobDescription'
-            name='jobDescription'
-            value={jobDescription}
-            placeholder='Description du poste'
-            
-          />
-        </div>
-        <div style={{ color: 'green', margin: '10px 0' }}>{success}</div>
-        <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
+          <div className='mb-3'>
+            <label htmlFor='password' className='form-label'>
+              Description du poste:
+            </label>
+            <input
+              onChange={e => setJobDescription(e.target.value)}
+              type='text'
+              className='form-control'
+              id='jobDescription'
+              name='jobDescription'
+              value={jobDescription}
+              placeholder='Description du poste'
+              required
+              
+            />
+          </div>
+          <div className='mb-3'>
+            <label htmlFor='password' className='form-label'>
+              Votre adresse mail:
+            </label>
+            <input
+              onChange={e => setAuthor(e.target.value)}
+              type='text'
+              className='form-control'
+              id='author'
+              name='author'
+              value={author}
+              placeholder='Votre adresse mail'
+              required
+              
+            />
+            <p class="text-danger">Attention, vous recevrez les informations des utilisateurs ayant postulé à votre annonce sur cette adresse mail.</p>
+          </div>
+          <div style={{ color: 'green', margin: '10px 0' }}>{success}</div>
+          <div style={{ color: 'red', margin: '10px 0' }}>{error}</div>
 
-        <button type='submit' className='btn btn-primary'>
-          Soumettre
-        </button>
+          <button type='submit' className='btn btn-primary'>
+            Soumettre
+          </button>
 
-        
-      </form>
+          
+        </form>  
+      </div>
+      
       
     </div>
   )

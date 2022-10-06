@@ -15,19 +15,11 @@ export async function onLogin(loginData) {
   return await axios.post('http://localhost:8000/api/login', loginData)
 }
 
+/*export async function userData(email) {
+  return await axios.get('http://localhost:8000/api/protected', email)
+}*/
+
 
 export async function onLogout() {
   return await axios.get('http://localhost:8000/api/logout')
-}
-
-export async function fetchProtectedInfo() {
-  return await axios.get('http://localhost:8000/api/protected')
-}
-
-export async function userData() {
-  return await axios.get('http://localhost:8000/api/user')
-}
-
-export async function recrInfo() {
-  return await axios.get('http://localhost:8000/api/recrInfo')
 }

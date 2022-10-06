@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Postuler from './postuler';
 
 const PostsList = () => {
 
@@ -6,7 +7,7 @@ const PostsList = () => {
     
     const getPosts = async () => {
         try {
-            const response = await fetch("http://localhost:8000/api/crudRecruteur")
+            const response = await fetch("http://localhost:8000/api/posts")
             const jsonData = await response.json()
 
             setPosts(jsonData)
@@ -19,16 +20,21 @@ const PostsList = () => {
     useEffect(() => {
         getPosts();
     }, []);
+
+
+    
     
     return (
         <div className='mt-5'>
-            <div className='d-flex'>
+            <h2>Annonces :</h2>
+            <div className='d-flex flex-wrap'>
             {posts.map(post => (
                 <div key={post.job_id} className='m-3 bg-light text-dark p-3'>
                     <p>Poste : {post.job_title}</p>
                     <p>Lieu : {post.job_place}</p>
                     <p>Description : {post.job_description}</p>
-                    <button className='btn btn-primary'>Postuler</button>
+                    <Postuler getPosts={getPosts}/>
+                    
                 </div>
             ))}    
             </div>

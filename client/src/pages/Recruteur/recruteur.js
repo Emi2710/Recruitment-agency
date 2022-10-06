@@ -7,8 +7,10 @@ export const Recruteur = () => {
 
   return (
     <Layout>
-      <h1>Recruteur</h1>
+      <h1 className='text-center mt-5'>Recruteur</h1>
+      <ListUserInfo />
       <CrudRecruteur />
+      
     </Layout>
   )
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { onLogin } from '../../api/auth'
 import Layout from '../../components/layout'
 import { useDispatch } from 'react-redux'
@@ -7,36 +7,38 @@ import { authenticateUser } from '../../redux/slices/authSlice'
 
 const Login = () => {
 
-  const [values, setValues] = useState({
-    email: '',
-    password: '',
-    role: '',
-  })
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+  
 
   const [error, setError] = useState(false)
-  
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-  }
 
   const dispatch = useDispatch()
+
   const onSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      await onLogin(values)
+
+      await onLogin({email, password, role})
+
       dispatch(authenticateUser())
       localStorage.setItem('isAuth', 'true')
-      localStorage.setItem('role', values.role)
+      localStorage.setItem('role', role)
+      localStorage.setItem('email', email)
+
+
     } catch (error) {
       console.log(error.response.data.errors[0].msg)
       setError(error.response.data.errors[0].msg)
     }
   }
 
+  
   return (
     <Layout>
-      <form onSubmit={(e) => onSubmit(e)} className='container mt-3'>
+      <form onSubmit={onSubmit} className='container mt-3'>
         <h1>Connexion</h1>
 
         <div className='mb-3'>
@@ -44,12 +46,12 @@ const Login = () => {
             Adresse mail
           </label>
           <input
-            onChange={(e) => onChange(e)}
+            onChange={e => setEmail(e.target.value)}
             type='email'
             className='form-control'
             id='email'
             name='email'
-            value={values.email}
+            value={email}
             placeholder='exemple@gmail.com'
             required
           />
@@ -60,9 +62,9 @@ const Login = () => {
             Mot de passe
           </label>
           <input
-            onChange={(e) => onChange(e)}
+            onChange={e => setPassword(e.target.value)}
             type='password'
-            value={values.password}
+            value={password}
             className='form-control'
             id='password'
             name='password'
@@ -72,8 +74,9 @@ const Login = () => {
 
           <label htmlFor='role' className='form-label mt-3'>Je suis:</label>
             <select 
-                    onChange={(e) => onChange(e)}
-                    value={values.role}
+                    
+                    onChange={e => setRole(e.target.value)}
+                    value={role}
                     name="role"
                     id="role" 
                     className='form-select'

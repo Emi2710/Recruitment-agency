@@ -47,36 +47,22 @@ exports.login = async (req, res) => {
   let payload = {
     id: user.user_id,
     email: user.email,
-    
   }
 
+  
   try {
     const token = await sign(payload, SECRET)
-
+       
     return res.status(200).cookie('token', token, { httpOnly: true }).json(
       {
       success: true,
-      info: 'Connecté avec succès',
-      users: user.role,
-      
+      info: 'Connexion réalisée avec succès',
     })
   } catch (error) {
     console.log(error.message)
     return res.status(500).json({
       error: error.message,
     })
-  }
-}
-
-
-
-exports.protected = async (req, res) => {
-  try {
-    return res.status(200).json({
-      info: 'protected info',
-    })
-  } catch (error) {
-    console.log(error.message)
   }
 }
 
@@ -96,23 +82,3 @@ exports.logout = async (req, res) => {
   }
 }
 
-/*exports.recrInfo = async (req, res) => {
-  const { firm, adress } = req.body
-  try {
-
-    await db.query('insert into users(firm, adress) values ($1 , $2)', [
-      firm, 
-      adress,
-    ])
-
-    return res.status(201).json({
-      success: true,
-      message: 'Vos informations ont bien été enregistrées',
-    })
-  } catch (error) {
-    console.log(error.message)
-    return res.status(500).json({
-      error: error.message,
-    })
-  }
-}*/
