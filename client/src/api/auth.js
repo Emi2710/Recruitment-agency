@@ -5,21 +5,18 @@ axios.defaults.withCredentials = true
 
 export async function onRegistration(registrationData) {
   return await axios.post(
-    'http://localhost:8000/api/register',
+    '/api/register',
     registrationData
   )
 }
 
 
 export async function onLogin(loginData) {
-  return await axios.post('http://localhost:8000/api/login', loginData)
+  return await axios.post('/api/login', loginData)
 }
 
-/*export async function userData(email) {
-  return await axios.get('http://localhost:8000/api/protected', email)
-}*/
 
 
 export async function onLogout() {
-  return await axios.get('http://localhost:8000/api/logout')
+  return await axios.get('/api/logout')
 }

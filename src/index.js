@@ -15,6 +15,10 @@ app.use(cookieParser())
 app.use(cors({ origin: CLIENT_URL, credentials: true }))
 app.use(passport.initialize())
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")))
+}
+
 //import routes
 const authRoutes = require('./routes/auth')
 const crudRoutes = require ('./routes/crudUser')

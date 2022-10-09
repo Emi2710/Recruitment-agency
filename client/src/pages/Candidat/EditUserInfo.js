@@ -9,7 +9,7 @@ const EditUserInfo = ({ userData }) => {
     try {
       const body = { name, resume };
       const response = await fetch(
-        `http://localhost:8000/api/candidat/${localStorage.getItem("email")}`,
+        `/api/candidat/${localStorage.getItem("email")}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

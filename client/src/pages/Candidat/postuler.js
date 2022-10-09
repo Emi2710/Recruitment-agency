@@ -7,7 +7,7 @@ const Postuler = ({post}) => {
 
   const getAuthor = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/api/posts/${jobId}`)
+            const response = await fetch(`/api/posts/${jobId}`)
             const jsonData = await response.json()
 
             setAuthor(jsonData.author);

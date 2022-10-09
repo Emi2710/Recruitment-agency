@@ -6,7 +6,7 @@ const ListUserInfo = () => {
     
     const getUser = async () => {
         try {
-            const response = await fetch(`http://localhost:8000/api/protected/${localStorage.getItem("email")}`)
+            const response = await fetch(`/api/protected/${localStorage.getItem("email")}`)
             const jsonData = await response.json()
 
             setUserData(jsonData)

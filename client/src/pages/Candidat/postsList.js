@@ -7,7 +7,7 @@ const PostsList = () => {
     
     const getPosts = async () => {
         try {
-            const response = await fetch("http://localhost:8000/api/posts")
+            const response = await fetch("/api/posts")
             const jsonData = await response.json()
 
             setPosts(jsonData)
