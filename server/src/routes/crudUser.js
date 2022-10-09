@@ -32,7 +32,7 @@ router.get("/posts", async(req, res) => {
 router.get("/posts/:id", async(req, res) => {
     try {
         const { id } = req.params;
-        const postId = await pool.query("SELECT * FROM crud_recruteur WHERE job_id = $1", [id])
+        const postId = await pool.query("SELECT author FROM crud_recruteur WHERE job_id = $1", [id])
         res.json(postId.rows[0])
     } catch (error) {
         console.error(error.message);

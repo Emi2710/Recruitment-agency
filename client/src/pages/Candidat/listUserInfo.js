@@ -26,7 +26,7 @@ const ListUserInfo = () => {
                     <p>Role : {user.role}</p>
                     <p>Email : {user.email}</p>
                     <p>Nom: {user.name}</p>
-                    <p>CV: {user.resume}</p>
+                    <p>CV: Lien <a href={user.resume}>ici</a></p>
                     <EditUserInfo userData={userData} />
                 </div>
             ))}

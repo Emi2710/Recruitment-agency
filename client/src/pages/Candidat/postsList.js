@@ -33,7 +33,7 @@ const PostsList = () => {
                     <p>Poste : {post.job_title}</p>
                     <p>Lieu : {post.job_place}</p>
                     <p>Description : {post.job_description}</p>
-                    <Postuler getPosts={getPosts}/>
+                    <Postuler post={post} />
                     
                 </div>
             ))}    

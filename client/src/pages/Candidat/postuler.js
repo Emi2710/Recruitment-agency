@@ -1,46 +1,64 @@
 import React, { useState, useEffect } from 'react'
 
-const Postuler = ({getPosts}) => {
+const Postuler = ({post}) => {
 
-    const [email, setEmail] = useState("");
+  const [jobId, setJobId] = useState(post.job_id);
+  const [author, setAuthor] = useState(post.author);
 
-    const getPostId = async e => {
-    e.preventDefault();
-    try {
-      const response = await fetch(`http://localhost:8000/posts/${getPosts.job_id}`)
-      const jsonData = await response.json()
+  const getAuthor = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/posts/${jobId}`)
+            const jsonData = await response.json()
 
-      console.log(jsonData)
-
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-  useEffect(() => {
-        getPostId();
+            setAuthor(jsonData.author);
+            
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+    useEffect(() => {
+        getAuthor();
     }, []);
 
-
-    /*function sendMail() {
-    var link = `mailto:(${email})`
-             + "&subject=" + encodeURIComponent("This is my subject")
-             + "&body=" + encodeURIComponent("wesh alors")
-             
-             //"&body=" + encodeURIComponent(document.getElementById('myText').value)
-    ;
     
-    window.location.href = link;
-}*/
+
+
 
   return (
-    <div id={`id${getPosts.job_id}`} onClick={() => setEmail(getPosts.author)}>
-        <button className='btn btn-primary'
-                onClick={getPostId()}
-                data-target={`#id${getPosts.job_id}`}
-        >
-            Postuler
+    <div>
+      
+      <div>
+        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={`#id${post.job_id}`}>
+        Postuler
         </button>
+
+        <div className="modal fade" id={`id${post.job_id}`} onClick={() => setJobId(post.job_id)} tabIndex="-1" aria-labelledby="postuler" aria-hidden="true">
+        <div className="modal-dialog">
+            <div className="modal-content">
+            <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Postuler à une annonce</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+                <p>Vous êtes sur le point de postuler à cette annonce.</p> 
+                
+            </div>
+            <div className="modal-footer">
+                <form method='post'>
+                    <a href={`mailto:${author}`}>
+                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Confirmer</button>    
+                    </a>
+                    <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Annuler</button>    
+                </form>
+                
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    
+
     </div>
   )
 }

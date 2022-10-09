@@ -8,8 +8,7 @@ const Register = () => {
     password: '',
     role: '',
   })
-  const [firm, setFirm] = useState("")
-  const [address, setAddress] = useState("")
+  
   const [error, setError] = useState(false)
   const [success, setSuccess] = useState(false)
 
@@ -27,14 +26,7 @@ const Register = () => {
       setSuccess(data.message)
       setValues({ email: '', password: '', role: '' })
 
-      const body = { firm, address };
-      const response = await fetch("http://localhost:8000/api/recrInfo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-
-      window.location = "/"
+      
     } catch (error) {
       setError(error.response.data.errors[0].msg)
       setSuccess('')
@@ -91,48 +83,7 @@ const Register = () => {
                 <option value="recruteur">Recruteur</option>
                 <option value="candidat">Candidat</option>
             </select>
-            <div className='mt-3'>
-              {values.role === 'candidat' && 
-                <>
-                <h3>candidat</h3>
-                </>
-              }
-              {values.role === 'recruteur' && 
-                <>
-                <div className='mt-3'>
-                  <label htmlFor='email' className='form-label'>
-                    Le nom de votre entreprise:
-                  </label>
-                  <input
-                    onChange={e => setFirm(e.target.value)}
-                    type='text'
-                    className='form-control'
-                    id='firm'
-                    name='firm'
-                    value={firm}
-                    placeholder="Nom de l'entreprise"
-                    
-                  />  
-                </div>
-                <div className='mt-3'>
-                  <label htmlFor='email' className='form-label'>
-                    L'adresse de votre entreprise:
-                  </label>
-                  <input
-                    onChange={e => setAddress(e.target.value)}
-                    type='text'
-                    className='form-control'
-                    id='address'
-                    name='address'
-                    value={address}
-                    placeholder="Adresse de l'entreprise"
-                    
-                  />  
-                </div>
-                
-                </>
-              }  
-            </div>
+            
 
         </div>
 
