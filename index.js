@@ -1,11 +1,10 @@
 const express = require('express')
-const session = require('express-session')
 const app = express()
 const { PORT, CLIENT_URL } = require('./constants')
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
 const cors = require('cors')
-const bodyParser = require('body-parser');
+const path = require('path');
 //import passport middleware
 require('./middlewares/passport-middleware')
 
