@@ -25,6 +25,7 @@ Installer les dépendances pour le côté client
 
 ```bash
     cd client
+    npm install
 ```
 
 Démarrer le front :
