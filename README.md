@@ -13,7 +13,7 @@ Ci dessous les démarches de déploiment en local.
 Cloner le projet
 
 ```bash
-    git clone https://github.com/Emi2710/Charles-Cantin-Portfolio
+    git clone https://github.com/Emi2710/Recruitment-agency
 ```
 
 Installer les dépendances pour le côté server
